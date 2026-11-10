@@ -23,7 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDe
         let full = NSButton(title: "⛶ تمام‌صفحه", target: self, action: #selector(toggleFullScreen))
         let settings = NSButton(title: "⚙ تنظیم آدرس", target: self, action: #selector(changeAddress))
 
-        let toolbar = NSStackView(views: [back, reload, full, settings])
+        let telegram = NSButton(title: "✈ تلگرام و آدرس جدید", target: self, action: #selector(openTelegram))
+        let toolbar = NSStackView(views: [back, reload, full, settings, telegram])
         toolbar.orientation = .horizontal
         toolbar.spacing = 10
 
@@ -68,6 +69,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDe
             return
         }
         webView.load(URLRequest(url: url))
+    }
+
+    @objc func openTelegram() {
+        if let url = URL(string: "https://t.me/zarfilmzz") {
+            NSWorkspace.shared.open(url)
+        }
     }
 
     @objc func goBack() {
